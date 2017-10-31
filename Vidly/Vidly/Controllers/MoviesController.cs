@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.Ajax.Utilities;
 using Vidly.Models;
-using Vidly.ViewModel;
 
 namespace Vidly.Controllers
 {
@@ -19,18 +19,9 @@ namespace Vidly.Controllers
 
         public ActionResult Index(int? pageIndex, string sortBy)
         {
-            List<Movie> mList = new List<Movie>()
-            {
-                new Movie {Id = 1, Name = "Shrek"},
-                new Movie {Id = 2, Name = "Wall-e"}
-            };
+            var movies = GetMovies();
 
-            MoviesViewModel viewModel = new MoviesViewModel
-            {
-                Movies = mList
-            };
-
-            return View(viewModel);
+            return View(movies);
 
         }
 
@@ -38,6 +29,15 @@ namespace Vidly.Controllers
         public ActionResult ByReleaseDate(int year, int month)
         {
             return Content(year + "/" + month);
+        }
+
+        private IEnumerable<Movie> GetMovies()
+        {
+            return new List<Movie>
+            {
+                new Movie {Id = 1, Name = "Shrek"},
+                new Movie {Id = 2, Name = "Wall-e"}
+            };
         }
     }
 }
