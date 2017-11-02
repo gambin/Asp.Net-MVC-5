@@ -9,14 +9,15 @@
 @if (Model.Any())
 {
     <table class="table table-bordered table-hover">
-
+        <th>Name</th>
+        <th>Membership Type</th>
         @foreach (var user in Model)
         {
             <tr>
                 <td>
                     <p>@Html.ActionLink(user.Name, "Details", "Customers", new { id = user.Id }, null)</p>
                 </td>
-                <td>@user.MembershipType.DiscountRates</td>
+                <td>@user.MembershipType.Name</td>
             </tr>
         }
     </table>

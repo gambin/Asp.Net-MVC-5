@@ -32,15 +32,14 @@ namespace Vidly.Controllers
         [Route("customers/{id}")]
         public ActionResult Details(int id)
         {
-            List<Customer> cList = new List<Customer>()
-            {
-                new Customer {Id = 1, Name = "John Smith"},
-                new Customer {Id = 2, Name = "Maty Willians"}
-            };
-
-            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
-            
+            //List<Customer> cList = new List<Customer>()
+            //{
+            //    new Customer {Id = 1, Name = "John Smith"},
+            //    new Customer {Id = 2, Name = "Maty Willians"}
+            //};
             // return View(id);
+
+            var customer = _context.Customers.Include(c => c.MembershipType).SingleOrDefault(c => c.Id == id);
             return View(customer);
         }
     }

@@ -220,6 +220,26 @@
     <Compile Include="Migrations\201711012350578_PopulateMembershipTypes.Designer.cs">
       <DependentUpon>201711012350578_PopulateMembershipTypes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711020009439_AddNameMembershipType.cs" />
+    <Compile Include="Migrations\201711020009439_AddNameMembershipType.Designer.cs">
+      <DependentUpon>201711020009439_AddNameMembershipType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711020020075_PopulateMembershipTypes1.cs" />
+    <Compile Include="Migrations\201711020020075_PopulateMembershipTypes1.Designer.cs">
+      <DependentUpon>201711020020075_PopulateMembershipTypes1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711020026096_CustomerAddBirthday.cs" />
+    <Compile Include="Migrations\201711020026096_CustomerAddBirthday.Designer.cs">
+      <DependentUpon>201711020026096_CustomerAddBirthday.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711020029287_CustomerAddBirthdaySetNullable.cs" />
+    <Compile Include="Migrations\201711020029287_CustomerAddBirthdaySetNullable.Designer.cs">
+      <DependentUpon>201711020029287_CustomerAddBirthdaySetNullable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711020058219_MoviesProp.cs" />
+    <Compile Include="Migrations\201711020058219_MoviesProp.Designer.cs">
+      <DependentUpon>201711020058219_MoviesProp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -293,6 +313,7 @@
     <Content Include="Views\Customers\Index.cshtml" />
     <Content Include="Views\Customers\Details.cshtml" />
     <Content Include="Views\Movies\Index.cshtml" />
+    <Content Include="Views\Movies\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -331,6 +352,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711012350578_PopulateMembershipTypes.resx">
       <DependentUpon>201711012350578_PopulateMembershipTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711020009439_AddNameMembershipType.resx">
+      <DependentUpon>201711020009439_AddNameMembershipType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711020020075_PopulateMembershipTypes1.resx">
+      <DependentUpon>201711020020075_PopulateMembershipTypes1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711020026096_CustomerAddBirthday.resx">
+      <DependentUpon>201711020026096_CustomerAddBirthday.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711020029287_CustomerAddBirthdaySetNullable.resx">
+      <DependentUpon>201711020029287_CustomerAddBirthdaySetNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711020058219_MoviesProp.resx">
+      <DependentUpon>201711020058219_MoviesProp.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -5,11 +5,25 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.Ajax.Utilities;
 using Vidly.Models;
+using System.Data.Entity;
 
 namespace Vidly.Controllers
 {
     public class MoviesController : Controller
     {
+
+        private ApplicationDbContext _context;
+
+        public MoviesController()
+        {
+            _context = new ApplicationDbContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
+
         // GET: Movies
 
         public ActionResult Edit(int id)
@@ -17,12 +31,20 @@ namespace Vidly.Controllers
             return Content("id=" + id);
         }
 
-        public ActionResult Index(int? pageIndex, string sortBy)
+        public ActionResult Index()
         {
-            var movies = GetMovies();
-
+            //var movies = GetMovies();
+            //return View(movies);
+            var movies = _context.Movies.ToList();
             return View(movies);
 
+        }
+
+        [Route("movies/details/{id}")]
+        public ActionResult Details(int id)
+        {
+            var movie = _context.Movies.SingleOrDefault(c => c.Id == id);
+            return View(movie);
         }
 
         [Route("movies/released/{year}/{month:regex(\\d{2}):range(1,12)}")]

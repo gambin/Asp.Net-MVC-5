@@ -8,14 +8,15 @@
 @if (Model.Any())
 {
     <table class="table table-bordered table-hover">
-
+        <th>Movie</th>
+        <th>Gender</th>
         @foreach (var movie in Model)
         {
             <tr>
                 <td>
-                    <p>@movie.Name</p>
+                    <p>@Html.ActionLink(movie.Name, "Details", "Movies", new { id = movie.Id }, null)  </p>
                 </td>
-
+                <td>@movie.Gender</td>
             </tr>
         }
     </table>
