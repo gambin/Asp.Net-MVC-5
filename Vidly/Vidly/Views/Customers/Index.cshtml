@@ -16,7 +16,7 @@
                 <td>
                     <p>@Html.ActionLink(user.Name, "Details", "Customers", new { id = user.Id }, null)</p>
                 </td>
-
+                <td>@user.MembershipType.DiscountRates</td>
             </tr>
         }
     </table>
