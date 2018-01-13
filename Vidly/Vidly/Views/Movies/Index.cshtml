@@ -1,10 +1,12 @@
 ﻿@model IEnumerable<Vidly.Models.Movie>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Movies";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Movies</h2>
+<p><a class="btn btn-primary" href="/Movies/New" role="button">New Movie</a></p>
+
 @if (Model.Any())
 {
     <table class="table table-bordered table-hover">
@@ -14,9 +16,9 @@
         {
             <tr>
                 <td>
-                    <p>@Html.ActionLink(movie.Name, "Details", "Movies", new { id = movie.Id }, null)  </p>
+                    <p>@Html.ActionLink(movie.Name, "Edit", "Movies", new { id = movie.Id }, null)  </p>
                 </td>
-                <td>@movie.Gender</td>
+                <td>@movie.Gender.Name</td>
             </tr>
         }
     </table>

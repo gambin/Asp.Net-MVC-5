@@ -2,11 +2,11 @@
 @{
     /**/
 
-    ViewBag.Title = "New";
+    ViewBag.Title = Model.Title;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>New Customer</h2>
+<h2>@Model.Title</h2>
 
 @using (Html.BeginForm("Save", "Customers"))
 {
@@ -31,5 +31,6 @@
     @Html.HiddenFor(m => m.Customer.Id)
 
     <button type="submit" class="btn btn-primary">Save</button>
+    <a class="btn btn-primary" href="javascript:window.history.back();" role="button">Cancel</a>
 }
 

@@ -53,6 +53,7 @@ namespace Vidly.Controllers
         }
 
         // EDIT: Customer
+        [Route("customers/edit/{id}")]
         public ActionResult Edit(int id)
         {
             var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
@@ -62,9 +63,11 @@ namespace Vidly.Controllers
             }
             else
             {
-                var viewModel = new CustomerFormViewModel
+                // Alteracao de declarao de objeto anonimoo na criacao do objeto viewModel
+                // dessa forma é possivel utilizar o construtor com o objeto Customer
+                // obtendo o Id e personalizando o page title e header
+                var viewModel = new CustomerFormViewModel(customer)
                 {
-                    Customer = customer,
                     MembershipTypes = _context.MembershipTypes.ToList()
                 };
                 return View("CustomerForm", viewModel);
