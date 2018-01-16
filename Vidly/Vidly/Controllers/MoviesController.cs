@@ -47,7 +47,8 @@ namespace Vidly.Controllers
             var genders = _context.Genders.ToList();
             var viewModel = new MovieFormViewModel
             {
-                Genders = genders
+                Genders = genders,
+                // Movie = new Movie()
             };
             return View("MovieForm", viewModel);
         }
@@ -91,9 +92,19 @@ namespace Vidly.Controllers
 
         // SAVE: Customer
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [Route("movies/save")]
         public ActionResult Save(Movie movie)
         {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new MovieFormViewModel()
+                {
+                    Movie = movie,
+                    Genders = _context.Genders.ToList()
+                };
+                return View("MovieForm", viewModel);
+            }
             if (movie.Id == 0)
             {
                 _context.Movies.Add(movie);

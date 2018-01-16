@@ -201,9 +201,14 @@
     <Compile Include="Migrations\201801112358037_Reset.Designer.cs">
       <DependentUpon>201801112358037_Reset.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801141128347_PopulateMembership.cs" />
+    <Compile Include="Migrations\201801141128347_PopulateMembership.Designer.cs">
+      <DependentUpon>201801141128347_PopulateMembership.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\CustomValidationRules\Min18YearsIfAMember.cs" />
     <Compile Include="Models\Gender.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -302,6 +307,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201801112358037_Reset.resx">
       <DependentUpon>201801112358037_Reset.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801141128347_PopulateMembership.resx">
+      <DependentUpon>201801141128347_PopulateMembership.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

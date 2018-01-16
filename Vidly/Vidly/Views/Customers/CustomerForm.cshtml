@@ -10,17 +10,21 @@
 
 @using (Html.BeginForm("Save", "Customers"))
 {
+    @Html.ValidationSummary(true, "Please fix the following errors.")
     <div class="form-group">
         @Html.LabelFor(m => m.Customer.Name)
         @Html.TextBoxFor(m => m.Customer.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Customer.Name)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Customer.MembershipTypeId)
+        @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), "-- Select a membership type --", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Customer.MembershipTypeId)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Customer.Birthday)
         @Html.TextBoxFor(m => m.Customer.Birthday, "{0:dd MMM yyyy}", new { @class = "form-control" })
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Customer.MembershipTypeId)
-        @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), "", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Customer.Birthday)
     </div>
     <div class="form-check">
         @Html.CheckBoxFor(m => m.Customer.IsSubscribedToNewsLetter)
@@ -29,8 +33,10 @@
 
     // Hidden user id
     @Html.HiddenFor(m => m.Customer.Id)
-
+    @Html.AntiForgeryToken()
     <button type="submit" class="btn btn-primary">Save</button>
     <a class="btn btn-primary" href="javascript:window.history.back();" role="button">Cancel</a>
 }
-
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    }

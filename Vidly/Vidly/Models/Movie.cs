@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Vidly.Models
 {
-    
+
     public class Movie
     {
         [Required]
@@ -14,7 +14,7 @@ namespace Vidly.Models
 
         [Required]
         public string Name { get; set; }
-                    
+
         [Required]
         [Display(Name = "Release Date")]
         public DateTime ReleaseDate { get; set; }
@@ -25,6 +25,7 @@ namespace Vidly.Models
 
         [Required]
         [Display(Name = "Number in Stock")]
+        [Range(1,20)]
         public int NumberInStock { get; set; }
 
 
@@ -32,6 +33,10 @@ namespace Vidly.Models
 
         [Display(Name = "Gender")]
         public int GenderId { get; set; }
-        
+        public Movie()
+        {
+            // ReleaseDate = new DateTime();
+        }
     }
 }
+
