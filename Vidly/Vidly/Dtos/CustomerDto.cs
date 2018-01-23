@@ -14,7 +14,6 @@ namespace Vidly.Dtos
         [Required]
         [MaxLength(255)]
         public string Name { get; set; }
-        [Vidly.Models.CustomValidationRules.Min18YearsIfAMember]
         public DateTime? Birthday { get; set; }
         public bool IsSubscribedToNewsLetter { get; set; }
         public byte MembershipTypeId { get; set; }
