@@ -7,6 +7,7 @@ using System.Web.Http;
 using Vidly.Models;
 using Vidly.Dtos;
 using AutoMapper;
+using System.Data.Entity;
 
 namespace Vidly.Controllers.Api
 {
@@ -22,7 +23,10 @@ namespace Vidly.Controllers.Api
         // GET: All Movies - /api/movies
         public IEnumerable<MovieDto> GetMovies()
         {
-            return _context.Movies.ToList().Select(Mapper.Map<Movie, MovieDto>);
+            return _context.Movies
+                .Include(m => m.Gender)
+                .ToList()
+                .Select(Mapper.Map<Movie, MovieDto>);
         }
 
         // GET: Movie - /api/movies/1
@@ -60,7 +64,6 @@ namespace Vidly.Controllers.Api
         [HttpPut]
         public IHttpActionResult UpdateMovie(int id, MovieDto movieDto)
         {
-            var movie = _context.Movies.FirstOrDefault(m => m.Id == id);
             if (!ModelState.IsValid)
             {
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
@@ -78,8 +81,30 @@ namespace Vidly.Controllers.Api
                     return Ok();
                 }
             }
-
         }
 
+        // DELETE: Movie - /api/movies/1
+        [HttpDelete]
+        public IHttpActionResult DeleteMovie(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            }
+            else
+            {
+                var movieInDb = _context.Movies.FirstOrDefault(m => m.Id == id);
+                if (movieInDb != null)
+                {
+                    _context.Movies.Remove(movieInDb);
+                    _context.SaveChanges();
+                    return Ok();
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+        }
     }
 }
