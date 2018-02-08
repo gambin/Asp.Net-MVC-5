@@ -28,10 +28,14 @@ namespace Vidly.Models
         [Range(1,20)]
         public int NumberInStock { get; set; }
 
+        [Required]
+        [Display(Name = "Number Available")]
+        [Range(0, 20)]
+        public int NumberAvailable { get; set; }
 
         public Gender Gender { get; set; }
 
-        [Display(Name = "Gender")]
+        [Display(Name = "Genre")]
         public int GenderId { get; set; }
         public Movie()
         {
