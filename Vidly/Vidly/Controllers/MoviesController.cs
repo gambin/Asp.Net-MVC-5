@@ -114,16 +114,17 @@ namespace Vidly.Controllers
             }
             if (movie.Id == 0)
             {
+                movie.NumberAvailable = movie.NumberInStock;
                 _context.Movies.Add(movie);
             }
             else
             {
-                var customerInDb = _context.Movies.Single(c => c.Id == movie.Id);
-                customerInDb.Name = movie.Name;
-                customerInDb.GenderId = movie.GenderId;
-                customerInDb.NumberInStock = movie.NumberInStock;
-                customerInDb.ReleaseDate = movie.ReleaseDate;
-                customerInDb.DateAdded = movie.DateAdded;
+                var movieInDb = _context.Movies.Single(c => c.Id == movie.Id);
+                movieInDb.Name = movie.Name;
+                movieInDb.GenderId = movie.GenderId;
+                movieInDb.NumberInStock = movie.NumberInStock;
+                movieInDb.ReleaseDate = movie.ReleaseDate;
+                movieInDb.DateAdded = movie.DateAdded;
             }
             _context.SaveChanges();
             return RedirectToAction("Index", "Movies");

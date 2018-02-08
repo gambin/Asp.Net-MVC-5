@@ -24,11 +24,10 @@ namespace Vidly.Controllers.Api
         public IEnumerable<MovieDto> GetMovies(string query = null)
         {
             var moviesQuery = _context.Movies
-                .Include(m => m.Gender)
-                .Where(m => m.NumberAvailable > 0);
+                .Include(m => m.Gender);
 
             if (!String.IsNullOrWhiteSpace(query))
-                moviesQuery = moviesQuery.Where(m => m.Name.Contains(query));
+                moviesQuery = moviesQuery.Where(m => m.Name.Contains(query) && m.NumberAvailable > 0);
 
             return moviesQuery
                 .ToList()
@@ -60,6 +59,7 @@ namespace Vidly.Controllers.Api
             else
             {
                 var movie = Mapper.Map<MovieDto, Movie>(movieDto);
+                movie.NumberAvailable = movieDto.NumberInStock;
                 _context.Movies.Add(movie);
                 _context.SaveChanges();
                 movieDto.Id = movie.Id;
